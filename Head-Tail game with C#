@@ -1,0 +1,632 @@
+static string User1_Name, User2_Name, User3_Name, User4_Name, winner;
+        static int overs = 0, ball = 0,toss;
+        static int total, total1, total2, total3;
+        static int user1 = 0, user2 = 0, user3 = 0, user4 = 0;
+        //TOSS
+        static void SinglePlayertoss()
+        {
+            int toss, cputoss, randomint;
+            Console.Write("ENTER 1 FOR HEAD AND 2 FOR TAIL:");
+            toss = Convert.ToInt32(Console.ReadLine());
+            switch (toss)
+            {
+                case 1:
+                    {
+                        cputoss = 2;
+                        Random rnd = new Random();
+                        randomint = rnd.Next(1, 3);
+                        Console.WriteLine("random" + randomint);
+                        if (randomint == 1)
+                        {
+                            Console.WriteLine("its head");
+                            Console.WriteLine("user will bat");
+                        }
+                        else if (randomint == 2)
+                        {
+                            Console.WriteLine("its tail");
+                            Console.WriteLine("computer will bat");
+                        }
+                        break;
+                    }
+                case 2:
+                    {
+                        cputoss = 1;
+                        Random rnd = new Random();
+                        randomint = rnd.Next(1, 3);
+                        Console.WriteLine("random" + randomint);
+                        if (randomint == 1)
+                        {
+                            Console.WriteLine("its head");
+                            Console.WriteLine("computer will bat");
+
+                        }
+                        else if (randomint == 2)
+                        {
+                            Console.WriteLine("its tail");
+                            Console.WriteLine("user will bat");
+                        }
+                        break;
+                    }
+            }
+        }
+        static void MultiPlayertoss(string User1_Name, string User2_Name)
+        {
+            int toss, cputoss, randomint;
+            Console.Write("ENTER 1 FOR HEAD AND 2 FOR TAIL:");
+            toss = Convert.ToInt32(Console.ReadLine());
+            switch (toss)
+            {
+                case 1:
+                    {
+                        cputoss = 2;
+                        Random rnd = new Random();
+                        randomint = rnd.Next(1, 3);
+                        Console.WriteLine("random" + randomint);
+                        if (randomint == 1)
+                        {
+                            Console.WriteLine("its head:{0} will bat", User1_Name);
+
+                        }
+                        else if (randomint == 2)
+                        {
+                            Console.WriteLine("its tail:{0} will bat", User2_Name);
+
+                        }
+                        break;
+
+                    }
+                case 2:
+                    {
+                        cputoss = 1;
+                        Random rnd = new Random();
+                        randomint = rnd.Next(1, 3);
+                        Console.WriteLine("random" + randomint);
+                        if (randomint == 1)
+                        {
+                            Console.WriteLine("its tail:{0} will bat", User2_Name);
+                        }
+                        else if (randomint == 2)
+                        {
+                            Console.WriteLine("its tail");
+                            Console.WriteLine("its head:{0} will bat", User1_Name);
+                        }
+                        break;
+                    }
+            }
+
+
+        }
+
+        // Overs 
+        static void over()
+        {
+            Console.Write("how many overs: ");
+            overs = Convert.ToInt32(Console.ReadLine());
+            ball = overs * 6;
+        }
+        //RULES OF GAME
+        static void Singleplayerrule()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("");
+            Console.WriteLine("Single Player Game Rules:");
+            Console.WriteLine("[1]This gameplay is between user and computer.");
+            Console.WriteLine("[2] It will be a limited over match");
+            Console.WriteLine("[3]The team with more runs will win in the limited over match");
+            Console.WriteLine("");
+            Console.WriteLine("{0,35}", "GOOD LUCK");
+            SinglePlayerMatch();
+            Console.ForegroundColor = ConsoleColor.Black;
+        }
+        static void Multiplayerrule()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("");
+            Console.WriteLine("MultiPlayer Game Rules:");
+            Console.WriteLine("[1]You can play with your friends and challenge them");
+            Console.WriteLine("[2]You are not allowed to watch screen while rival is batting");
+            Console.WriteLine("");
+            Console.WriteLine("{0,35}", "GOOD LUCK");
+            MultiPlayerMatch();
+            Console.ForegroundColor = ConsoleColor.Black;
+        }
+        static void Tournamentrule()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("");
+            Console.WriteLine("Tournament Game Rules:");
+            Console.WriteLine("[1]You can play with your friends and challenge them");
+            Console.WriteLine("[2]It allows you to play with 4 players");
+            Console.WriteLine("[3]You are not allowed to watch screen while rival is batting");
+            Console.WriteLine("[4]The user wins the final will win the Tournament Championship ");
+            Console.WriteLine("");
+            Console.WriteLine("{0,35}", "GOOD LUCK");
+            TournamentMatch();
+            Console.ForegroundColor = ConsoleColor.Black;
+        }
+        //GAME BEGINS
+        static void SinglePlayerMatch()
+        {
+            Console.ForegroundColor = ConsoleColor.Black;
+            int total = 0, total1 = 0, comp, user1;
+
+            //toss
+            SinglePlayertoss();
+
+            //overs
+            over();
+            //single player match
+            for (int i = 0; i < ball; i++)
+            {
+                Console.Write("enter a number");
+                user1 = Convert.ToInt32(Console.ReadLine());
+                Random rnd = new Random();
+                comp = rnd.Next(1, 6);
+                Console.WriteLine("comp=" + comp);
+                if (user1 != comp)
+                {
+                    total = total + user1;
+                }
+                else if (user1 == comp)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("innings end");
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    break;
+                }
+            }
+            Console.WriteLine("-------------------------------");
+            Console.WriteLine("total=" + total);
+            for (int j = 0; j < ball; j++)
+            {
+                Console.Write("enter a number");
+                user1 = Convert.ToInt32(Console.ReadLine());
+                Random rnd = new Random();
+                comp = rnd.Next(1, 6);
+                Console.WriteLine("comp=" + comp);
+                if (user1 != comp)
+                {
+                    total1 = total1 + comp;
+                }
+                else if (user1 == comp)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("innings end");
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    break;
+                }
+
+            }
+            Console.WriteLine("-------------------------------");
+            Console.WriteLine("total=" + total1);
+            string winner = null;
+            if (total > total1)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                winner = "user wins";
+                Console.WriteLine(winner);
+            }
+            else if (total1 > total)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                winner = "computer wins";
+                Console.WriteLine(winner);
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write("Press any key to Continue");
+                Console.ReadLine();
+                Console.Clear();
+            }
+            string filename = @"SinglePlayerMatchRecord.txt";
+            FileStream stream = null;
+            try
+            {
+                stream = new FileStream(filename, FileMode.Append);
+                using (StreamWriter writer = new StreamWriter(stream, Encoding.UTF8))
+                {
+                    writer.WriteLine("Score Record");
+                    writer.WriteLine("__");
+                    writer.WriteLine("Single Player Match");
+                    writer.WriteLine("User Score: {0}", total);
+                    writer.WriteLine("Computer Score: {0}", total1);
+                    writer.WriteLine(winner);
+                }
+            }
+
+            finally
+            {
+                if (stream != null)
+                {
+                    stream.Dispose();
+                }
+            }
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Do you want to play again?");
+            Console.WriteLine("Choose yes or no");
+            string play = Console.ReadLine();
+            if (play == "yes" || play == "Yes" || play == "YES")
+            {
+                Main();
+            }
+            else if (play == "no" || play == "No" || play == "NO")
+            {
+                Console.WriteLine("Good Bye!");
+            }
+        }
+        static void MultiPlayerMatch()
+        {
+            Console.Write("user1 enter your name:");
+            User1_Name = Console.ReadLine();
+            Console.Write("user2 enter your name:");
+            User2_Name = Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.Black; ;
+            //toss
+            MultiPlayertoss(User1_Name, User2_Name);
+            over();
+            //Multiplayer Match
+            GamePlay(ref winner,user1,user2, ref total, ref total1,User1_Name,User2_Name);
+            Console.WriteLine("-------------------------------");
+            Console.Write("Press any key to Continue");
+            Console.ReadLine();
+            Console.Clear();
+            string filename = @"MultiPlayerMatchRecord.txt";
+            FileStream stream = null;
+            try
+            {
+                stream = new FileStream(filename, FileMode.Append);
+                using (StreamWriter writer = new StreamWriter(stream, Encoding.UTF8))
+                {
+                    writer.WriteLine("Score Record");
+                    writer.WriteLine("__");
+                    writer.WriteLine("Multi Player Match");
+                    writer.WriteLine("User1 Score: {0}", total);
+                    writer.WriteLine("User2 Score: {0}", total1);
+                    writer.WriteLine(winner);
+                }
+            }
+            finally
+            {
+                if (stream != null)
+                {
+                    stream.Dispose();
+                }
+            }
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Do you want to play again?");
+            Console.WriteLine("Choose Yes or No");
+            string play = Console.ReadLine();
+            if (play == "yes" || play == "YES" || play == "Yes")
+            {
+                Main();
+            }
+            else if (play == "no" || play == "No" || play == "NO")
+            {
+                Console.WriteLine("Good Bye");
+            }
+        }
+        static void TournamentMatch()
+        {
+            //match1
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.Write("user1 enter your name:");
+            User1_Name = Console.ReadLine();
+            Console.Write("user2 enter your name:");
+            User2_Name = Console.ReadLine();
+            Console.Write("user3 enter your name:");
+            User3_Name = Console.ReadLine();
+            Console.Write("user4 enter your name:");
+            User4_Name = Console.ReadLine();
+            //toss
+            MultiPlayertoss(User1_Name, User2_Name);
+            //tournament match1
+
+            over();
+            GamePlay(ref winner,user1,user2, ref total, ref total1,User1_Name,User2_Name);
+            Console.WriteLine("-------------------------------");
+            string filename = @"TournamentMatch1Record.txt";
+            FileStream stream = null;
+            try
+            {
+                stream = new FileStream(filename, FileMode.Append);
+                using (StreamWriter writer = new StreamWriter(stream, Encoding.UTF8))
+                {
+                    writer.WriteLine("Score Record");
+                    writer.WriteLine("__");
+                    writer.WriteLine("Tournament Match 1");
+                    writer.WriteLine("User1 Score: {0}", total);
+                    writer.WriteLine("User2 Score: {0}", total1);
+                    writer.WriteLine(winner);
+                }
+            }
+
+            finally
+            {
+                if (stream != null)
+                {
+                    stream.Dispose();
+                }
+            }
+           
+            Console.WriteLine("----------MATCH 2-----------------");
+            // toss
+            Console.WriteLine("Toss for second Match");
+
+           MultiPlayertoss(User3_Name, User4_Name);
+            //Match begins
+            over();
+            GamePlay(ref winner, user3, user4, ref total2,ref total3, User3_Name, User4_Name);
+            Console.WriteLine("-------------------------------");
+            string filename2 = @"TournamentMatch2Record.txt";
+            FileStream stream2 = null;
+            try
+            {
+                stream2 = new FileStream(filename2, FileMode.Append);
+                using (StreamWriter writer = new StreamWriter(stream2, Encoding.UTF8))
+                {
+                    writer.WriteLine("Score Record");
+                    writer.WriteLine("__");
+                    writer.WriteLine("Tornament Match 2");
+                    writer.WriteLine("User3 Score: {0}", total2);
+                    writer.WriteLine("User4 Score: {0}", total3);
+                    writer.WriteLine(winner);
+                }
+            }
+
+            finally
+            {
+                if (stream != null)
+                {
+                    stream.Dispose();
+                }
+            }
+
+
+
+            int randomint, cputoss;
+
+
+            Console.WriteLine("FINAL MATCH*");
+            //final condition1
+            if (total > total1 || total2 > total3)
+            {
+                //toss
+                MultiPlayertoss(User1_Name, User3_Name);
+                GamePlay(ref winner, user1, user3, ref total,ref total2, User1_Name, User3_Name);
+                Console.WriteLine("-------------------------------");
+                string filename3 = @"FinalMatch1Record.txt";
+                FileStream stream3 = null;
+                try
+                {
+                    stream3 = new FileStream(filename3, FileMode.Append);
+                    using (StreamWriter writer = new StreamWriter(stream3, Encoding.UTF8))
+                    {
+                        writer.WriteLine("Score Record");
+                        writer.WriteLine("__");
+                        writer.WriteLine("Final Match");
+                        writer.WriteLine("User1 Score: {0}", total1);
+                        writer.WriteLine("User3 Score: {0}", total3);
+                        writer.WriteLine(winner);
+                    }
+                }
+
+                finally
+                {
+                    if (stream != null)
+                    {
+                        stream.Dispose();
+                    }
+                }
+            }
+
+            // final condition2
+            else if (total1 > total || total3 > total2)
+            {
+                MultiPlayertoss(User2_Name, User4_Name);
+                GamePlay(ref winner, user2, user4, ref total2, ref total3, User2_Name, User4_Name);
+                Console.WriteLine("-------------------------------");
+                string filename4 = @"FinalMatch2Record.txt";
+                FileStream stream4 = null;
+                try
+                {
+                    stream4 = new FileStream(filename4, FileMode.Append);
+                    using (StreamWriter writer = new StreamWriter(stream4, Encoding.UTF8))
+                    {
+                        writer.WriteLine("Score Record");
+                        writer.WriteLine("__");
+                        writer.WriteLine("Final Match");
+                        writer.WriteLine("User2 Score: {0}", total1);
+                        writer.WriteLine("User4 Score: {0}", total3);
+                        writer.WriteLine(winner);
+                    }
+                }
+                finally
+                {
+                    if (stream != null)
+                    {
+                        stream.Dispose();
+                    }
+                }
+            }
+            //final condition 3
+            else if (total > total1 || total3 > total2)
+            {
+                //toss
+                MultiPlayertoss(User1_Name, User4_Name);
+                GamePlay(ref winner, user1, user4,ref total, ref total3,User1_Name,User4_Name);
+                string filename5 = @"FinalMatch3Record.txt";
+                FileStream stream5 = null;
+                try
+                {
+                    stream5 = new FileStream(filename5, FileMode.Append);
+                    using (StreamWriter writer = new StreamWriter(stream, Encoding.UTF8))
+                    {
+                        writer.WriteLine("Score Record");
+                        writer.WriteLine(" __");
+                        writer.WriteLine("Final Match");
+                        writer.WriteLine("User1 Score: {0}", total);
+                        writer.WriteLine("User4 Score: {0}", total3);
+                        writer.WriteLine(winner);
+                    }
+                }
+
+                finally
+                {
+                    if (stream != null)
+                    {
+                        stream.Dispose();
+                    }
+                }
+            }
+
+            //final condition4
+            else if (total1 > total || total2 > total3)
+            {
+                //toss
+                MultiPlayertoss(User2_Name, User3_Name);
+                GamePlay(ref winner, user2, user3, ref total1, ref total3,User2_Name,User3_Name);
+                Console.WriteLine("-------------------------------");
+
+            }
+            Console.Write("Press any key to Continue");
+            Console.ReadLine();
+            Console.Clear();
+            string filename6 = @"FinalMatchRecord.txt";
+            FileStream stream6 = null;
+            try
+            {
+                stream6 = new FileStream(filename6, FileMode.Append);
+                using (StreamWriter writer = new StreamWriter(stream6, Encoding.UTF8))
+                {
+                    writer.WriteLine("Score Record");
+                    writer.WriteLine("__");
+                    writer.WriteLine("Final Match");
+                    writer.WriteLine("User1 Score: {0}", total);
+                    writer.WriteLine("User3 Score{0}", total2);
+                    writer.WriteLine(winner);
+                }
+            }
+
+            finally
+            {
+                if (stream != null)
+                {
+                    stream.Dispose();
+                }
+            }
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Do you want to play again?");
+            Console.WriteLine("Choose Yes or No");
+            string play = Console.ReadLine();
+            if (play == "yes" || play == "YES" || play == "Yes")
+            {
+                Main();
+            }
+            else if (play == "no" || play == "No" || play == "NO")
+            {
+                Console.WriteLine("Good Bye");
+            }
+        }
+        static void GamePlay(ref string  winner,int user1,int user2, ref int total, ref int total1,string User1_Name,string User2_Name)
+        {
+            for (int a = 0; a < ball; a++)
+            {
+                Console.Write("{0} enter a number:", User1_Name);
+                user1 = Convert.ToInt32(Console.ReadLine());
+                Console.Clear();
+                Console.Write("{0} enter a number:", User2_Name);
+                user2 = Convert.ToInt32(Console.ReadLine());
+                Console.Clear();
+                if (user1 != user2)
+                {
+                    total = total + user1;
+                }
+                else if (user1 == user2)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("innings end");
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    break;
+                }
+
+            }
+            Console.WriteLine("total=" + total);
+            Console.WriteLine("-------------------------------");
+            for (int j = 0; j < ball; j++)
+            {
+                Console.Write(" {0} enter a number:", User1_Name);
+                user1 = Convert.ToInt32(Console.ReadLine());
+                Console.Clear();
+                Console.Write("{0} enter a number:", User2_Name);
+                user2 = Convert.ToInt32(Console.ReadLine());
+                Console.Clear();
+                if (user1 != user2)
+                {
+                    total1 = total1 + user2;
+                }
+                else if (user1 == user2)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("innings end");
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    break;
+                }
+            }
+            Console.WriteLine("total=" + total1);
+            Console.WriteLine("-------------------------------");
+
+            if (total > total1)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                winner = User1_Name + "wins";
+                Console.WriteLine(winner);
+            }
+            else if (total1 > total)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                winner = User2_Name + "wins";
+                Console.WriteLine(winner);
+                Console.ForegroundColor = ConsoleColor.Black;
+            }
+        }
+        static void GameMenu()
+        {
+
+            Console.WriteLine(" MAIN MENU");
+            Console.WriteLine("CHOOSE OPTION");
+            Console.WriteLine("[1] Play Single Player Match");
+            Console.WriteLine("[2] Play MultiPlayer Match");
+            Console.WriteLine("[3] Play Tournament Matches");
+            Console.WriteLine("[0] To Exit ");
+            Console.WriteLine("");
+            Console.Write("CHOOSE ANYONE OPTION:");
+        }
+        static void Main()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("{0,55}", "WELCOME TO HAND CRICKET ");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+
+            int i = 1;
+            while (i != 0)
+            {
+                GameMenu();
+
+                switch (Convert.ToInt32(Console.ReadLine()))
+                {
+                    case 1:
+                        Singleplayerrule();
+                        break;
+
+                    case 2:
+                        Multiplayerrule();
+                        break;
+
+                    case 3:
+                        Tournamentrule();
+                        break;
+
+
+                }
+                i = 0;
+            }
+        }
+    }
